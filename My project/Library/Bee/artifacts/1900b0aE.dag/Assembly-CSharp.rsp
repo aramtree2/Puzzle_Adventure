@@ -354,8 +354,11 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/QuarterView 3D Action BE5/ReadMe/Scripts/ReadmeBE5.cs"
-"Assets/Scripts/Follow.cs"
+"Assets/Scripts/Camera.cs"
+"Assets/Scripts/GameController.cs"
+"Assets/Scripts/MapController.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/PuzzleObject.cs"
 -langversion:9.0
 
 /deterministic

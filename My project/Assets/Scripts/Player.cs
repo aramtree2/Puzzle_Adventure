@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+namespace puzzle{
 public class Player : MonoBehaviour
 {
     public float speed;
@@ -28,4 +29,20 @@ public class Player : MonoBehaviour
 
         transform.LookAt(transform.position + moveVec);
     }
+
+    public void Locate(){
+
+    }
+    public void Move(){
+
+    }
+    public GameObject[] Near(){
+        GameObject[] near = new GameObject[8];
+
+        return near;
+    }
+    public void Travel(){
+
+    }
+}
 }
