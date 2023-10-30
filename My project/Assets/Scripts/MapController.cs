@@ -2,30 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace puzzle{
-public class MapController : MonoBehaviour
+namespace puzzle
 {
-    public Player player;
-
-    // Start is called before the first frame update
-    void Start()
+    public class MapController : MonoBehaviour
     {
-        
-    }
+        public Player player;
+        public void Click()
+        {
+            Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                if (hitObject.CompareTag("PuzzleObject"))
+                {
+                    PuzzleObject puzzleObject = hitObject.GetComponent<PuzzleObject>();
+                    Interact(puzzleObject);
+                }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void Click(){
-        player.Travel();
-        // interact(puzzleObject);
-    }
-    void interact(PuzzleObject puzzleObject){
-        puzzleObject.interact();
+                else
+                {
+                    Vector3 clickedPosition = Input.mousePosition;
+                    player.Travel(clickedPosition);
+                }
+            }
+        }
+        void Interact(PuzzleObject puzzleObject)
+        {
+            puzzleObject.Interact();
+        }
     }
 }
-}
-

@@ -17,7 +17,7 @@ public class PuzzleObject : MonoBehaviour
         
     }
 
-    public void interact(){
+    public void Interact(){
         
     }
 }

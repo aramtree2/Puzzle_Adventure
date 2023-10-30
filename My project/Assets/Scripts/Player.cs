@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 namespace puzzle{
 public class Player : MonoBehaviour
 {
+    public MapController mapController;
     public float speed;
     float hAxis;
     float vAxis;
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour
         anim.SetBool("isRun", moveVec != Vector3.zero);
 
         transform.LookAt(transform.position + moveVec);
+
+        mapController.Click();
     }
 
     public void Locate(){
@@ -41,7 +44,7 @@ public class Player : MonoBehaviour
 
         return near;
     }
-    public void Travel(){
+    public void Travel(Vector3 clickedPosi){
 
     }
 }
