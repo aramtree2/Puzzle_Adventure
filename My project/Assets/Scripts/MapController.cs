@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace puzzle{
 public class MapController : MonoBehaviour
 {
     public Player player;
+
+    [SerializeField]
+    private Camera sceneCamera;
+
+    private IEnumerator travelCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +23,37 @@ public class MapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0)){
+            Click();
+        }
     }
 
     void Click(){
-        player.Travel();
-        // interact(puzzleObject);
-    }
-    void interact(PuzzleObject puzzleObject){
-        puzzleObject.interact();
+        if(travelCoroutine != null) StopCoroutine(travelCoroutine);
+
+        Vector3 ClickPos = Input.mousePosition;
+        Ray ray = sceneCamera.ScreenPointToRay(ClickPos);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100)){
+            GameObject clickObject = hit.transform.gameObject;
+            PuzzleObject puzzleObject = clickObject.GetComponent<PuzzleObject>();
+            if(puzzleObject == null){
+                Vector3 targetVec = hit.point;
+                Vector3 RoundedVec;
+                RoundedVec.x = Mathf.Round(targetVec.x);
+                RoundedVec.y = transform.position.y;
+                RoundedVec.z = Mathf.Round(targetVec.z);
+                travelCoroutine = player.Travel(RoundedVec);
+                StartCoroutine(travelCoroutine);
+            }
+            else{
+                puzzleObject.interact();
+            }
+        }
+        else{
+            return;
+        }
     }
 }
 }
