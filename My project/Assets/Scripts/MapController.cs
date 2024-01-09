@@ -41,9 +41,9 @@ public class MapController : MonoBehaviour
             if(puzzleObject == null){
                 Vector3 targetVec = hit.point;
                 Vector3 RoundedVec;
-                RoundedVec.x = Mathf.Round(targetVec.x);
-                RoundedVec.y = transform.position.y;
-                RoundedVec.z = Mathf.Round(targetVec.z);
+                RoundedVec.x = Mathf.Round(targetVec.x * 2.5f) / 2.5f;
+                RoundedVec.y = Mathf.Round(targetVec.y * 2.5f) / 2.5f;;
+                RoundedVec.z = Mathf.Round(targetVec.z* 2.5f) / 2.5f;
                 travelCoroutine = player.Travel(RoundedVec);
                 StartCoroutine(travelCoroutine);
             }

@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
         dragPos = Input.mousePosition;
         while(true){
             Vector3 delta = new Vector3(dragPos.x - Input.mousePosition.x,0,dragPos.y - Input.mousePosition.y);
-            delta /= 200f;
+            delta /= 500f;
             delta *= offset.x;
             delta = Quaternion.Euler(0,225,0) * delta;
             focusTarget += delta;

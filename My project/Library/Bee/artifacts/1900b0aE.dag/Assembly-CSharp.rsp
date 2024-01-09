@@ -361,9 +361,15 @@
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/MapController.cs"
+"Assets/Scripts/Maps/TestMap.cs"
+"Assets/Scripts/Maps/TestMap2.cs"
+"Assets/Scripts/Maps/World1.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PuzzleObject.cs"
 "Assets/Scripts/PuzzleObjects/JumpPad.cs"
+"Assets/Scripts/PuzzleObjects/Portal.cs"
+"Assets/Scripts/PuzzleObjects/PushBox.cs"
+"Assets/Scripts/PuzzleObjects/Stairs.cs"
 "Assets/Scripts/PuzzleObjects/Teleporter.cs"
 -langversion:9.0
 
