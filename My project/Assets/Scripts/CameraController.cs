@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour
     }
 
     void Follow(){
-        transform.position = Vector3.Lerp(transform.position, focusTarget + offset - new Vector3(0,0.5f,0), followSpeed);
+        transform.position = Vector3.Lerp(transform.position, focusTarget + offset + new Vector3(0,0.2f,0), followSpeed);
     }
     IEnumerator Drag(){
         dragPos = Input.mousePosition;
@@ -63,12 +63,12 @@ public class CameraController : MonoBehaviour
     }
     void Wheel(float wheelInput){
         if(wheelInput > 0) {
-            offset -= new Vector3(zoomSpeed,zoomSpeed,zoomSpeed);
-            if(offset.x <= zoomMin) offset = new Vector3(zoomMin,zoomMin,zoomMin);
+            offset -= new Vector3(zoomSpeed,zoomSpeed*2,zoomSpeed);
+            if(offset.x <= zoomMin) offset = new Vector3(zoomMin,zoomMin*2,zoomMin);
         }
         else if(wheelInput < 0){
-            offset += new Vector3(zoomSpeed,zoomSpeed,zoomSpeed);
-            if(offset.x >= zoomMax) offset = new Vector3(zoomMax,zoomMax,zoomMax);
+            offset += new Vector3(zoomSpeed,zoomSpeed*2,zoomSpeed);
+            if(offset.x >= zoomMax) offset = new Vector3(zoomMax,zoomMax*2,zoomMax);
         }
     }
     IEnumerator Reset(){

@@ -13,20 +13,28 @@ public class PushBox : PuzzleObject
             IEnumerator moveCoroutine;
             if(Mathf.Abs(mapController.player.transform.position.x - transform.position.x) < 0.04f){
                 if(mapController.player.transform.position.z < transform.position.z){
-                moveCoroutine = Move(0f,0.4f);
-                StartCoroutine(moveCoroutine);
+                    if(!CheckCanPass(new Vector3(0f,0f,0.4f))) return;
+                    if(!CheckCanStep(new Vector3(0f,0f,0.4f))) return;
+                    moveCoroutine = Move(0f,0.4f);
+                    StartCoroutine(moveCoroutine);
                 }
                 else if(mapController.player.transform.position.z > transform.position.z){
+                    if(!CheckCanPass(new Vector3(0f,0f,-0.4f))) return;
+                    if(!CheckCanStep(new Vector3(0f,0f,-0.4f))) return;
                     moveCoroutine = Move(0f,-0.4f);
                     StartCoroutine(moveCoroutine);
                 }
             }
             else if(Mathf.Abs(mapController.player.transform.position.z - transform.position.z) < 0.04f){
                 if(mapController.player.transform.position.x < transform.position.x){
-                moveCoroutine = Move(0.4f,0f);
-                StartCoroutine(moveCoroutine);
+                    if(!CheckCanPass(new Vector3(0.4f,0f,0f))) return;
+                    if(!CheckCanStep(new Vector3(0.4f,0f,0f))) return;
+                    moveCoroutine = Move(0.4f,0f);
+                    StartCoroutine(moveCoroutine);
                 }
                 else if(mapController.player.transform.position.x > transform.position.x){
+                    if(!CheckCanPass(new Vector3(-0.4f,0f,0f))) return;
+                    if(!CheckCanStep(new Vector3(-0.4f,0f,0f))) return;
                     moveCoroutine = Move(-0.4f,0f);
                     StartCoroutine(moveCoroutine);
                 }

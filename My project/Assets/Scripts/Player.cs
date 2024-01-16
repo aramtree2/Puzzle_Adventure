@@ -13,15 +13,17 @@ public class Player : MonoBehaviour
 
     bool isMoving;
     bool isTravel;
+    public bool isExternalMoving;
 
     void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+        isExternalMoving = false;
     }
 
     void Update()
     {
-        if(!isMoving && !isTravel){
+        if(!isMoving && !isTravel && !isExternalMoving){
             transform.position = new Vector3(Mathf.Round(transform.position.x* 2.5f) / 2.5f,transform.position.y,Mathf.Round(transform.position.z* 2.5f) / 2.5f);
         }
         transform.rotation = new Quaternion(0f,transform.rotation.y,0f,transform.rotation.w);
@@ -146,15 +148,17 @@ public class Player : MonoBehaviour
             else if(remainVec.z < -0.04f) z = -0.4f;
 
             RaycastHit hit;
+            int passLayerMask = 1 << LayerMask.NameToLayer("Solid") | 1 << LayerMask.NameToLayer("Obstacle");
+            int stepLayerMask = 1 << LayerMask.NameToLayer("Solid");
             bool xBlocked = 
-            Physics.Raycast(transform.position + new Vector3(0,0.2f,0), new Vector3(x, 0f, 0f), out hit, 0.4f) ||
-            !Physics.Raycast(transform.position + new Vector3(x,0.2f,0), new Vector3(0, -0.4f, 0f), out hit, 0.4f);
+            Physics.Raycast(transform.position + new Vector3(0,0.2f,0), new Vector3(x, 0f, 0f), out hit, 0.4f, passLayerMask) ||
+            !Physics.Raycast(transform.position + new Vector3(x,0.2f,0), new Vector3(0, -0.4f, 0f), out hit, 0.4f, stepLayerMask);
             bool zBlocked = 
-            Physics.Raycast(transform.position + new Vector3(0,0.2f,0), new Vector3(0f, 0f, z), out hit, 0.4f) ||
-            !Physics.Raycast(transform.position + new Vector3(0,0.2f,z), new Vector3(0f, -0.4f, 0f), out hit, 0.4f);
+            Physics.Raycast(transform.position + new Vector3(0,0.2f,0), new Vector3(0f, 0f, z), out hit, 0.4f, passLayerMask) ||
+            !Physics.Raycast(transform.position + new Vector3(0,0.2f,z), new Vector3(0f, -0.4f, 0f), out hit, 0.4f, stepLayerMask);
             bool xzBlocked = 
-            Physics.Raycast(transform.position + new Vector3(0,0.2f,0), new Vector3(x, 0f, z), out hit, 0.56f) ||
-            !Physics.Raycast(transform.position + new Vector3(x,0.2f,z), new Vector3(0f, -0.4f, 0f), out hit, 0.4f);
+            Physics.Raycast(transform.position + new Vector3(0,0.2f,0), new Vector3(x, 0f, z), out hit, 0.56f, passLayerMask) ||
+            !Physics.Raycast(transform.position + new Vector3(x,0.2f,z), new Vector3(0f, -0.4f, 0f), out hit, 0.4f, stepLayerMask);
             
             if(Mathf.Abs(x) > 0.04f && Mathf.Abs(z) > 0.04f){
                 if(xBlocked || zBlocked || xzBlocked){

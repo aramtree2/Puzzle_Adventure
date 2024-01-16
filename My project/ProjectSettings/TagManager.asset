@@ -12,10 +12,10 @@ TagManager:
   - Water
   - UI
   - GameObject
-  - 
-  - 
-  - 
-  - 
+  - Solid
+  - Obstacle
+  - Decoration
+  - Cursor
   - 
   - 
   - 

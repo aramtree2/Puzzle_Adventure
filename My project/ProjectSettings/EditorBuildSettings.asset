@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World1.unity
     guid: 45459f774ccaa4d488c7b13f62268349
+  - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: a25b981f90c833a47a759bd47bdba118
+  - enabled: 1
+    path: Assets/Scenes/Puzzle1_1.unity
+    guid: d353e04a4b395c64b94c64ebcd090d65
   m_configObjects: {}

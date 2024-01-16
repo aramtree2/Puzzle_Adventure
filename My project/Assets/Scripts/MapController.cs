@@ -13,11 +13,14 @@ public class MapController : MonoBehaviour
     private Camera sceneCamera;
 
     private IEnumerator travelCoroutine;
+    public bool clickBlocked;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Reset();
+        StartFunction();
+        clickBlocked = false;
     }
 
     // Update is called once per frame
@@ -26,9 +29,17 @@ public class MapController : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             Click();
         }
+        UpdateFunction();
     }
 
+    public virtual void Reset(){}
+    public virtual void Clear(){}
+    public virtual void UpdateFunction(){}
+    public virtual void StartFunction(){}
+
     void Click(){
+        if(clickBlocked) return;
+
         if(travelCoroutine != null) StopCoroutine(travelCoroutine);
 
         Vector3 ClickPos = Input.mousePosition;
