@@ -10,7 +10,7 @@ public class MapController : MonoBehaviour
     public Player player;
 
     [SerializeField]
-    private Camera sceneCamera;
+    public Camera sceneCamera;
 
     private IEnumerator travelCoroutine;
     public bool clickBlocked;
