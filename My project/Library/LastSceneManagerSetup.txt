@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Puzzle1_1.unity
+- path: Assets/Maps/Ice Cave/Ice Cave.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

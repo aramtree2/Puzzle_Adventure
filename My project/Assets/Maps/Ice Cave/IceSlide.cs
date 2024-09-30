@@ -97,9 +97,12 @@ public class IceSlide : PuzzleObject
             mapController.player.isExternalMoving = true;
             mapController.player.transform.LookAt(targetLocation);
             mapController.player.transform.position += (targetLocation - mapController.player.transform.position).normalized * mapController.player.speed * Time.deltaTime * 1.5f;
-            Debug.Log(mapController.player.transform.position);
             yield return null;
         }        
+    }
+
+    public void Stop(){
+        StopAllCoroutines();
     }
 }
 }
